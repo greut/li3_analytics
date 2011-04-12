@@ -1,0 +1,42 @@
+#li3_analytics
+
+This library aims to integrate easily any kind of Tracking system into your
+lithium application using nothing more complex than a helper.
+
+##Installation
+
+Put li3_analytics into your library directory and this into your `app/bootstrap/libraries.php`.
+
+{{{
+Libraries::add('li3_analytics');
+}}}
+
+##Configuration
+
+_TODO_
+
+{{{
+use li3_analytics\analytics\Trackings;
+
+Trackings::config(array(
+    'adapter' => 'GoogleAnalytics',
+    'account' => 'UA-XXXXX-X'
+));
+}}}
+
+##Usage
+
+_TODO_
+
+{{{
+<?=$this->analytics->script() ?>
+</body>
+</html>
+}}}
+
+##Troubleshooting
+
+_TODO_
+
+##Authors
+- Yoan Blanc <yoan@dosimple.ch>
