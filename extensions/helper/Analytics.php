@@ -8,6 +8,7 @@ class Analytics extends \lithium\template\Helper
 	function script()
 	{
 		throw new \Exception('No implemented exception');
+		
 	}
 
 	// TODO:
