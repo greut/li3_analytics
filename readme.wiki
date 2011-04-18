@@ -16,18 +16,38 @@ Libraries::add('li3_analytics');
 _TODO_
 
 {{{
-use li3_analytics\analytics\Trackings;
+use li3_analytics\extensions\Trackings;
 
-Trackings::config(array(
+// Simple configuration
+Trackings::config(array('default' => array(
     'adapter' => 'GoogleAnalytics',
     'account' => 'UA-XXXXX-X'
-));
+)));
+
+// Advanced configuration
+//
+// _trackPageView is there by default but you *must* set it again
+// if you modify anything.
+Trackings::config(array('default' => array(
+    'adapter' => 'GoogleAnalytics',
+    'account' => 'UA-XXXXX-X',
+    'commands' => array(
+        array('_setDomainName', 'example.org'),
+        array('_trackPageView')
+    )
+)));
 }}}
 
 ##Usage
 
 _TODO_
 
+###in your controller
+{{{
+Trackings::push('_setDomainName', 'example.org');
+Trackings::push('_trackPageview');
+}}}
+###layouts/default.html.php
 {{{
 <?=$this->analytics->script() ?>
 </body>
