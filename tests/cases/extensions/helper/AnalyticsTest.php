@@ -34,9 +34,10 @@ class AnalyticsTest extends \lithium\test\Unit
 			'response' => new Response()
 		));
 		$this->analytics = new Analytics(array('context' => &$this->context));
+		$this->account = sprintf('UA-%05d-X',rand(1,99999));
 
 		Trackings::config(array('test' => array(
-			'account' => 'UA-12345-6'
+			'account' => $this->account
 		)));
 	}
 
@@ -57,7 +58,7 @@ class AnalyticsTest extends \lithium\test\Unit
 			'script' => array(
 				'type' => 'text/javascript'
 			),
-			'regex:/.*_setAccount.*async.*google-analytics.com\/ga.js[^<]+/',
+			'regex:/.*async.*google-analytics.com\/ga.js[^<]+/',
 			'/script'
 		));
 	}
@@ -69,7 +70,7 @@ class AnalyticsTest extends \lithium\test\Unit
 			'script' => array(
 				'type' => 'text/javascript'
 			),
-			'regex:/.*UA-12345-6[^<]*/',
+			'regex:/.*_setAccount.*'.$this->account.'[^<]*/',
 			'/script'
 		));
 	}
@@ -85,6 +86,5 @@ class AnalyticsTest extends \lithium\test\Unit
 			'regex:/.*_setDomainName.*example.org[^<]*/',
 			'/script'
 		));
-
 	}
 }
