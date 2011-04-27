@@ -3,9 +3,12 @@
 This library aims to integrate easily any kind of Tracking system into your
 lithium application using nothing more complex than a helper.
 
+At the moment only Google Analytics is supported.
+
 ##Installation
 
-Put li3_analytics into your library directory and this into your `app/bootstrap/libraries.php`.
+Put li3_analytics into your library directory and this into your
+`app/bootstrap/libraries.php`.
 
 {{{
 Libraries::add('li3_analytics');
@@ -13,34 +16,62 @@ Libraries::add('li3_analytics');
 
 ##Configuration
 
-_TODO_
+For now, `li3_analytics` only supports one tracking, it makes the configuration
+easier.
+
+###Simple configuration
+{{{
+use li3_analytics\extensions\Trackings;
+
+Trackings::config(array(
+    'adapter' => 'GoogleAnalytics',
+    'account' => 'UA-XXXXX-X'
+));
+}}}
+
+###Advanced configuration
+
+`_trackPageView` is there by default but you *must* set it again if you modify
+anything.
 
 {{{
 use li3_analytics\extensions\Trackings;
 
-// Simple configuration
-Trackings::config(array('default' => array(
-    'adapter' => 'GoogleAnalytics',
-    'account' => 'UA-XXXXX-X'
-)));
-
-// Advanced configuration
-//
-// _trackPageView is there by default but you *must* set it again
-// if you modify anything.
-Trackings::config(array('default' => array(
+Trackings::config(array(
     'adapter' => 'GoogleAnalytics',
     'account' => 'UA-XXXXX-X',
     'commands' => array(
         array('_setDomainName', 'example.org'),
         array('_trackPageView')
     )
-)));
+));
+}}}
+
+
+###Multi environment configuration
+
+Simple configuration
+
+{{{
+use li3_analytics\extensions\Trackings;
+
+Trackings::config(array(
+	true => array(
+		'adapter' => 'GoogleAnalytics'
+	),
+	'production' => array(
+		'account' => 'UA-XXXXX-X'
+	),
+	'development' => array(
+		'account' => 'UA-XXXXX-Y'
+	),
+	'test' => array(
+		'account' => 'UA-XXXXX-Z'
+	)
+));
 }}}
 
 ##Usage
-
-_TODO_
 
 ###in your controller
 {{{
@@ -54,9 +85,9 @@ Trackings::push('_trackPageview');
 </html>
 }}}
 
-##Troubleshooting
+##Where to start
 
-_TODO_
+ - [li3_analytics\extensions\Trackings](li3_analytics\extensions\Trackings)
 
 ##Authors
 - Yoan Blanc <yoan@dosimple.ch>

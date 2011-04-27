@@ -11,9 +11,8 @@ class Analytics extends \lithium\template\Helper
 	protected $_view;
 
 	// http://code.google.com/intl/fr/apis/analytics/docs/tracking/asyncTracking.html
-	function script($tracking='default')
-	{
-		$tracking = Trackings::get($tracking);
+	function script() {
+		$tracking = Trackings::get();
 		$class = get_class($tracking);
 		$adapter = mb_substr($class, mb_strrpos($class, '\\')+1);
 		$template = mb_strtolower($adapter);
@@ -30,8 +29,7 @@ class Analytics extends \lithium\template\Helper
 	// TODO:
 	// http://code.google.com/intl/fr/apis/analytics/docs/gaJS/gaJSApiBasicConfiguration.html#_gat.GA_Tracker_._trackPageview
 
-	protected function build_view()
-	{
+	protected function build_view() {
 		if (!isset($this->_view)) {
 			$this->_view = new View(array(
 				'paths' => array(

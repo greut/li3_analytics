@@ -31,8 +31,7 @@ class GoogleAnalytics extends \lithium\core\Object
 	 *
 	 * @return string tracking account
 	 */
-	public function account()
-	{
+	public function account() {
 		return $this->_account;
 	}
 
@@ -41,8 +40,7 @@ class GoogleAnalytics extends \lithium\core\Object
 	 *
 	 * @return array list of commands to run on the tracker
 	 */
-	public function commands()
-	{
+	public function commands() {
 		return array_merge(
 			array(array('_setAccount', trim($this->_account))),
 			$this->_commands

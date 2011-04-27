@@ -6,19 +6,39 @@ use li3_analytics\extensions\Trackings;
 
 class TrackingsTest extends \lithium\test\Unit
 {
-	function test_default_config()
+	function test_config()
 	{
-		Trackings::config(array('test' => array(
-			'account' => 'test',
+		$config = array(
+			true => array(
+				'adapter' => 'GoogleAnalytics',
+			),
+			'test' => array(
+				'account' => 'test',
+			)
+		);
+		Trackings::config($config);
+
+		$expected = array('default' => array(
 			'adapter' => 'GoogleAnalytics',
-		)));
+			'account' => 'test',
+			'filters' => array(),
+		));
+		$this->assertEqual($expected, Trackings::config());
+	}
+
+	function test_get()
+	{
+		Trackings::config(array(
+			'adapter' => 'GoogleAnalytics',
+			'account' => 'test'
+		));
 
 		$expected = array(
 			array('_setAccount', 'test'),
 			array('_trackPageView')
 		);
 
-		$tracking = Trackings::get('test');
+		$tracking = Trackings::get();
 
 		$this->assert('test', $tracking->account());
 		$this->assert($expected, $tracking->commands());
@@ -40,7 +60,7 @@ class TrackingsTest extends \lithium\test\Unit
 			array('_trackPageView')
 		);
 
-		$tracking = Trackings::get('test');
+		$tracking = Trackings::get();
 		$this->assert($expected, $tracking->commands());
 	}
 }
