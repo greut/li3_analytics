@@ -36,8 +36,9 @@ class AnalyticsTest extends \lithium\test\Unit
 		$this->analytics = new Analytics(array('context' => &$this->context));
 		$this->account = sprintf('UA-%05d-X',rand(1,99999));
 
-		Trackings::config(array('test' => array(
-			'account' => $this->account
+		Trackings::config(array('default' => array(
+			'account' => $this->account,
+			'adapter' => 'GoogleAnalytics',
 		)));
 	}
 

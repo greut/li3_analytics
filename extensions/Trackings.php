@@ -20,7 +20,7 @@ class Trackings extends \lithium\core\Adaptable
 
 	protected static $_adapters = 'adapter.tracking';
 
-	public static function get($name='GoogleAnalytics') {
+	public static function get($name) {
 		$config = static::_config($name);
 		if (static::$_commands) {
 			$config += array('commands' => array());
