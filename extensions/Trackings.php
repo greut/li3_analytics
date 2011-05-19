@@ -20,6 +20,13 @@ namespace li3_analytics\extensions;
 class Trackings extends \lithium\core\Adaptable
 {
 	/**
+	 * To be re-defined in sub-classes.
+	 *
+	 * @var object `Collection` of configurations, indexed by name.
+	 */
+	protected static $_configurations = array();
+
+	/**
 	 * An array of calls to be made by the tracker
 	 *
 	 * @var array
