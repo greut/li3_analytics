@@ -21,7 +21,7 @@ class GoogleAnalytics extends \lithium\core\Object
 	 * @var array
 	 */
 	protected $_commands = array(
-		array('_trackPageView')
+		array('_trackPageview')
 	);
 
 	protected $_autoConfig = array('account', 'commands');
