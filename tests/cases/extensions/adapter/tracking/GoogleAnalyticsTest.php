@@ -15,7 +15,7 @@ class GoogleAnalyticsTest extends \lithium\test\Unit
 		$this->assertEqual('test', $ga->account());
 		$expected = array(
 			array('_setAccount', 'test'),
-			array('_trackPageView'),
+			array('_trackPageview'),
 		);
 		$this->assertEqual($expected, $ga->commands());
 	}

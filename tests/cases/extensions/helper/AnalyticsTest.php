@@ -20,8 +20,7 @@ class AnalyticsTest extends \lithium\test\Unit
 
 	protected $_routes = array();
 	
-	function setup()
-	{
+	function setup() {
 		$this->_routes = Router::get();
 		Router::reset();
 		Router::connect('/{:controller}/{:action}/{:id}.{:type}');
@@ -42,18 +41,17 @@ class AnalyticsTest extends \lithium\test\Unit
 		));
 	}
 
-	function teardown()
-	{
+	function teardown() {
 		Router::reset();
 
 		foreach ($this->_routes as $route) {
 			Router::connect($route);
 		}
 		unset($this->analytics);
+		Trackings::reset();
 	}
 
-	function test_script()
-	{
+	function test_script() {
 		$result = $this->analytics->script();
 		$this->assertTags($result, array(
 			'script' => array(
@@ -64,8 +62,7 @@ class AnalyticsTest extends \lithium\test\Unit
 		));
 	}
 
-	function test_account()
-	{
+	function test_account() {
 		$result = $this->analytics->script();
 		$this->assertTags($result, array(
 			'script' => array(
@@ -76,9 +73,8 @@ class AnalyticsTest extends \lithium\test\Unit
 		));
 	}
 
-	function test_track_page()
-	{
-		Trackings::push('setDomainName', 'example.org');
+	function test_track_page() {
+		Trackings::push('_setDomainName', 'example.org');
 		$result = $this->analytics->script();
 		$this->assertTags($result, array(
 			'script' => array(
