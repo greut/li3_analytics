@@ -79,10 +79,13 @@ Trackings::push('_setDomainName', 'example.org');
 Trackings::push('_trackPageview');
 }}}
 ###layouts/default.html.php
+
+As advised by Google, put it right before the end of `<head>`.
+
 {{{
 <?=$this->analytics->script() ?>
-</body>
-</html>
+</head>
+<body>
 }}}
 
 ##Where to start
